@@ -3,31 +3,48 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --text-color: #666;
+  --background-color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --text-color: #fff;
+    --background-color: #333;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--text-color);
+  background: var(--background-color);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  .input-wrapper {
+    @apply relative rounded-full overflow-hidden;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .input-wrapper.active::before {
+    background: conic-gradient(
+      rgba(60, 0, 255, 0.4) 0deg,
+      transparent 360deg
+    );
+
+    @apply absolute h-[1000%] w-[150%] left-[-25%] top-[-450%] content-[''] animate-border-spin;
+  }
+  .input-wrapper.active .input-content {
+    background: rgb(231, 230, 254);
+  }
+
+  .input-content {
+    @apply absolute h-[calc(100%-4px)] w-[calc(100%-4px)] left-[2px] top-[2px] rounded-full px-4;
+    background: var(--background-color);
   }
 }
