@@ -1,59 +1,68 @@
 "use client";
 
-import { useChat } from "ai/react";
+import { useCompletion } from "ai/react";
 import { ChangeEvent, useState } from "react";
 
 export default function Home() {
-  const { messages, handleSubmit, setInput } = useChat();
+  const { completion, handleSubmit, setInput, isLoading } = useCompletion();
   const [inputValue, setInputValue] = useState("");
 
   const refineInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const prompt = `Find me 5 movies and 5 series recommendation, based on this title: ${value}`;
-    setInput(prompt);
-    setInputValue(value);
+    const prompt = process.env.NEXT_PUBLIC_PROMPT;
+    const key = process.env.NEXT_PUBLIC_PROMPT_KEY;
+    if (prompt && key) {
+      setInput(prompt.replace(key, value));
+      setInputValue(value);
+    } else {
+      alert("PROMPT / KEY not found!");
+    }
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
+    <main className="flex flex-col items-center justify-center py-20 px-4 min-h-screen max-w-screen-lg m-auto">
       <div className="flex flex-col items-center justify-center text-center">
-        <h1 className="text-6xl font-black uppercase mb-1">Movie like this</h1>
+        <h1 className="text-4xl md:text-6xl font-black uppercase mb-1">
+          Movie like this
+        </h1>
         <p>
           Find another movies or series recommendations, based on title input
           below.
         </p>
-        <div className="rounded-2xl bg-neutral-100 py-4 px-6 my-8">
+        <div className="rounded-2xl bg-neutral-100 dark:bg-neutral-800 py-4 px-6 my-8">
           <p className="opacity-75">
             For better result please include movie / series region & release
-            date. <br />
-            If the title is too common, you can add the some details as well.{" "}
-            <br />
+            date. {" "}
+            <br className="hidden md:block" />
+            If the title is too common, you can add the some details as well. {" "}
+            <br className="hidden md:block" />
             Example: You series netflix / Encounter, Korea, 2018.
           </p>
         </div>
 
-        {/* TODO: apply .active on search */}
         <form
-          className="input-wrapper h-[40px] w-[500px]"
+          className={`${
+            isLoading ? "active" : ""
+          } input-wrapper h-[40px] w-full md:w-[500px]`}
           onSubmit={handleSubmit}
         >
           <input
+            name="prompt"
             className="input-content text-center"
             placeholder="Just press enter to begin search"
             onChange={refineInputChange}
             value={inputValue}
             onSubmit={handleSubmit}
+            disabled={isLoading}
           />
         </form>
       </div>
 
-      <div className="flex flex-col gap-2 items-center justify-center bg-neutral-100 py-4 px-6 mt-12">
-        {messages.map((m) => (
-          <div key={m.id} className="whitespace-pre-wrap">
-            {m.role === "user" ? "User: " : "AI: "}
-            {m.content}
-          </div>
-        ))}
+      <div className="flex flex-col gap-2 items-center justify-center px-6">
+        <div
+          dangerouslySetInnerHTML={{ __html: completion }}
+          className="recommendations"
+        />
       </div>
     </main>
   );
