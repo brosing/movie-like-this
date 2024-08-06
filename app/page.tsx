@@ -26,15 +26,14 @@ export default function Home() {
           Movie like this
         </h1>
         <p>
-          Find another movies or series recommendations, based on title input
+          Find other movies or series recommendations based on the title input
           below.
         </p>
         <div className="rounded-2xl bg-neutral-100 dark:bg-neutral-800 py-4 px-6 my-8">
           <p className="opacity-75">
-            For better result please include movie / series region & release
-            date. {" "}
-            <br className="hidden md:block" />
-            If the title is too common, you can add the some details as well. {" "}
+            For better results please include movie / series region & release
+            date. <br className="hidden md:block" />
+            If the title is too common, you can add some details as well.{" "}
             <br className="hidden md:block" />
             Example: You series netflix / Encounter, Korea, 2018.
           </p>
