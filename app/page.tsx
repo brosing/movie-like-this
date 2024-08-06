@@ -2,10 +2,16 @@
 
 import { useCompletion } from "ai/react";
 import { ChangeEvent, useState } from "react";
+import Modal from "./_components/modal-tips";
 
 export default function Home() {
   const { completion, handleSubmit, setInput, isLoading } = useCompletion();
   const [inputValue, setInputValue] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const refineInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -22,27 +28,20 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center py-20 px-4 min-h-screen max-w-screen-lg m-auto">
       <div className="flex flex-col items-center justify-center text-center">
-        <h1 className="text-4xl md:text-6xl font-black uppercase mb-1">
+        <h1 className="text-4xl md:text-7xl font-black uppercase mb-1 cursor-pointer" title="click for search tips" onClick={toggleModal}>
           Movie like this
         </h1>
         <p>
           Find other movies or series recommendations based on the title input
           below.
         </p>
-        <div className="rounded-2xl bg-neutral-100 dark:bg-neutral-800 py-4 px-6 my-8">
-          <p className="opacity-75">
-            For better results please include movie / series region & release
-            date. <br className="hidden md:block" />
-            If the title is too common, you can add some details as well.{" "}
-            <br className="hidden md:block" />
-            Example: You series netflix / Encounter, Korea, 2018.
-          </p>
-        </div>
+        
+        <Modal isOpen={isModalOpen} onClose={toggleModal} />
 
         <form
           className={`${
             isLoading ? "active" : ""
-          } input-wrapper h-[40px] w-full md:w-[500px]`}
+          } input-wrapper h-[50px] w-full md:w-[500px] mt-8`}
           onSubmit={handleSubmit}
         >
           <input
