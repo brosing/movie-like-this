@@ -31,7 +31,7 @@ export default function Home() {
         <h1 className="text-4xl md:text-7xl font-black uppercase mb-1 cursor-pointer" title="click for search tips" onClick={toggleModal}>
           Movie like this
         </h1>
-        <p>
+        <p className="text-sm md:text-base">
           Find other movies or series recommendations based on the title input
           below.
         </p>
