@@ -64,10 +64,10 @@ body {
   }
 
   .recommendations > ul {
-    @apply grid grid-cols-1 md:grid-cols-4 gap-8;
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6;
   }
   .recommendations > ul > li {
-    @apply mb-4;
+    @apply mb-4 md:mb-10;
   }
   .recommendations > ul > li > h3 {
     @apply text-xl font-bold mb-2 overflow-hidden text-ellipsis md:h-14;
@@ -76,19 +76,19 @@ body {
    -webkit-box-orient: vertical;
   }
   .recommendations > ul > li > p {
-    @apply text-base overflow-hidden text-ellipsis md:h-36;
+    @apply text-base overflow-hidden text-ellipsis md:h-[100px];
     display: -webkit-box;
     -webkit-line-clamp: 6;
    -webkit-box-orient: vertical;
   }
-  .recommendations > ul > li > p:first-of-type {
-    @apply mb-4;
+  .recommendations > ul > li > p {
+    @apply mb-4 opacity-75 text-sm;
   }
   .recommendations .rating {
-    @apply flex flex-row gap-4;
+    @apply flex flex-row gap-2;
   }
   .recommendations .rating > a {
-    @apply p-2 bg-neutral-400 rounded-lg font-bold flex-1 text-center text-white;
+    @apply p-2 bg-neutral-400 rounded-full font-semibold text-sm flex-1 text-center text-white;
   }
   .recommendations .rating > a:first-child {
     @apply bg-yellow-500;

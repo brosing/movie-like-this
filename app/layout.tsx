@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 
-const inter = Nunito({ subsets: ["latin"] });
+const inter = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Movie Recommendations",
-  description: "AI Movie Recommendations",
+  title: "Movie Like This",
+  description: "AI Movie / Series Recommendations to search your similar favorite",
 };
 
 export default function RootLayout({

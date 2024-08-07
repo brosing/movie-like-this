@@ -20,11 +20,13 @@ const Modal = ({ isOpen, onClose }: Props) => {
             <div className="p-6">
               <h2 className="text-xl font-bold mb-2 uppercase">Tips</h2>
               <p>
-                For better results please include movie / series region &
-                release date. <br className="hidden md:block" />
-                If the title is too common, you can add some details as well.{" "}
+                Using only movie title is fine, but for a better results you may
+                include movie / series region & release date.{" "}
                 <br className="hidden md:block" />
-                Example: You series netflix / Encounter, Korea, 2018.
+                If the title is too common, you can add some details as well.{" "}
+              </p>
+              <p className="mt-4 font-semibold">
+                Example: You series netflix / Parasite, Korea, 2019.
               </p>
             </div>
           </div>
