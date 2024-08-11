@@ -88,12 +88,15 @@ body {
     @apply flex flex-row gap-2;
   }
   .recommendations .rating > a {
-    @apply p-2 bg-neutral-400 rounded-full font-semibold text-sm flex-1 text-center text-white;
+    @apply p-2 rounded-full font-semibold text-sm flex-1 text-center text-white;
   }
-  .recommendations .rating > a:first-child {
+  .recommendations .rating-imdb {
     @apply bg-yellow-500;
   }
-  .recommendations .rating > a:last-child {
+  .recommendations .rating-rt {
     @apply bg-rose-500;
+  }
+  .recommendations .rating-mal {
+    @apply bg-blue-700;
   }
 }
